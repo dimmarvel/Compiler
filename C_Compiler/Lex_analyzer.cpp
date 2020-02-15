@@ -20,7 +20,19 @@ void set_input_stream(string input_cod)
 	keyword_index = 0;
 }
 
+bool isKeyword(string word) {
+	for (int i = 0; i < keywords_lexeme->size(); i++)
+		if (keywords_lexeme[i] == word)
+			return true;
+	return false;
+}
+
 KeywordsLexeme get_next_token() 
 {
-	return "Hey all worked";
+	KeywordsLexeme token = "";
+	keyword_index = stopped_index;
+	while (input_code[keyword_index++] < input_code.size()) {
+		
+	}
+	return token;
 }

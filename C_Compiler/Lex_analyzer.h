@@ -6,12 +6,8 @@ typedef unsigned int uint;
 typedef string KeywordsLexeme;
 enum KEYWORDS;
 struct TOKENS;
-struct wfw
-{
-	int som;
-};
 //ключевые слова\символы\сочетания символов
-string const keywords_lexeme[1000] = {
+string const keywords_lexeme[] = {
 	"!",	"int",		"->",
 	"%",	"double",	"++",
 	"^",	"float",	"--",
@@ -81,4 +77,5 @@ struct TOKENS {
 uint get_keyword_index();
 void set_keyword_index(uint index);
 void set_input_stream(string input_cod);
+bool isKeyword(string word);
 KeywordsLexeme get_next_token();

@@ -25,10 +25,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lex_analyzer.h">
-      <Filter>sourse</Filter>
+      <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="parser.h">
-      <Filter>sourse</Filter>
+      <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
