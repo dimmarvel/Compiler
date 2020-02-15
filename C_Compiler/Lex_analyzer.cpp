@@ -21,7 +21,7 @@ void set_input_stream(string input_cod)
 }
 
 bool isKeyword(string word) {
-	for (int i = 0; i < keywords_lexeme->size(); i++)
+	for (int i = 0; i < keywords_lexeme.size(); i++)
 		if (keywords_lexeme[i] == word)
 			return true;
 	return false;
@@ -29,10 +29,18 @@ bool isKeyword(string word) {
 
 KeywordsLexeme get_next_token() 
 {
-	KeywordsLexeme token = "";
+	KeywordsLexeme token; int tI = 0;
 	keyword_index = stopped_index;
-	while (input_code[keyword_index++] < input_code.size()) {
-		
+
+	while (keyword_index < input_code.size()) {
+		if (input_code[keyword_index] != '\n' && input_code[keyword_index] != ' ') {
+			token += input_code[keyword_index];
+		}
+		if (isKeyword(token)) {
+			return token;
+		}
+		keyword_index++;
 	}
-	return token;
+
+	return "EOF (" + token + ")\n";
 }

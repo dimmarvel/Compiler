@@ -1,13 +1,18 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include<vector>
+
 using namespace std;
+
 typedef unsigned int uint;
 typedef string KeywordsLexeme;
 enum KEYWORDS;
 struct TOKENS;
+
+
 //ключевые слова\символы\сочетания символов
-string const keywords_lexeme[] = {
+const vector <string> keywords_lexeme {
 	"!",	"int",		"->",
 	"%",	"double",	"++",
 	"^",	"float",	"--",
