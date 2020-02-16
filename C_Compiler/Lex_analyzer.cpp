@@ -36,9 +36,11 @@ KeywordsLexeme get_next_token()
 	keyword_index = stopped_index;
 
 	while (keyword_index <= input_code.size()) {
+
 		if (input_code[keyword_index] != '\n' && input_code[keyword_index] != ' ') {
 			token += input_code[keyword_index];
 			ch_token = input_code[keyword_index];
+
 			if (isKeyword(ch_token)) {
 				++keyword_index;
 				string temp_token = ch_token + input_code[keyword_index];
@@ -53,8 +55,11 @@ KeywordsLexeme get_next_token()
 				stopped_index = ++keyword_index;
 				return token;
 			}
-		}
+
+		}else
+			token = "";
 		keyword_index++;
+
 	}
 	stopped_index = keyword_index;
 	return "ERROR (" + token + ")\n";

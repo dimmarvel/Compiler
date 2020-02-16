@@ -37,7 +37,7 @@ const vector <string> keywords_lexeme {
 	"<",	"friend",	"^=",
 	">",	"goto",		"|=",
 	"?",	"if",		"::"
-	",",	"inlune",
+	",",	"inline",
 	".",	"new",
 	"/",	"operator",
 			"private",
