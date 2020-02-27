@@ -7,11 +7,12 @@ using namespace std;
 
 typedef unsigned int uint;
 typedef string KeywordsLexeme;
-enum KEYWORDS;
-struct TOKENS;
+enum TOKENS;
+struct token_lexeme;
 
 
-//ключевые слова\символы\сочетания символов
+/*
+Ключевые слова\символы\сочетания символов*/
 const vector <string> keywords_lexeme {
 	"!",	"int",		"->",
 	"%",	"double",	"++",
@@ -63,21 +64,60 @@ const vector <string> keywords_lexeme {
 			"volatile",
 			"while",
 };
-enum KEYWORDS {
-	OPEN_BRACE,			// {
-	CLOSE_BRACE,		// }
-	OPEN_PARENTHESIS,	// (
-	CLOSE_PAREN,		// )
-	SEMICOLON,			// ;
-	INT_KEYWORD,		// int
-	RETURN_KEYWORD,		// return
-	IDENTIFIER,			// [a-z,A-Z]\w*
-	INTEGER_LITERAL,	// [0-9]
-	UNDEFIND			// undefind token
+
+/*
+Для определения ключевых слов.*/
+enum TOKENS {
+
+	OPEN_BRACE,			/*
+	Открывающая скобка */
+	CLOSE_BRACE,		/*
+	Закрывающая скобка */
+	OPEN_PARENTHESIS,	/*
+	Открывающая круглая скобка */
+	CLOSE_PAREN,		/*
+	Закрывающая круглая скобка*/
+	SEMICOLON,			/*
+	Ключевое слово "точка с запятой" ; */
+	INT_KEYWORD,		/*
+	Ключевое слово int */
+	RETURN_KEYWORD,		/*
+	Ключевое слово return */
+	IDENTIFIER,			/*
+	Все имена функций и имена переменных*/
+	INTEGER_LITERAL,	/*
+	Когда код содержит числа не являющиеся частью
+	идентификаторов они INTEGER_LITERAL(целочисленные литералы)
+	CHANGE - Язык поддерживает только целые числа, а не десятичные и тд.*/
+	STRING_LITERAL,		/*
+	Строковые литералы являются выражения - которые начинаются с двойных ковычек
+	и заканчиваются другой двойной ковычкой
+	P.s. для ясности, этот язык не имеет строкового типа.
+	Строковые константы на самом деле являются значениями указателя
+	которые указывают на конкретное место в памяти где компилятор
+	поместил поледовательность символов - которые составляют строку*/
+	END_OF_FILE,		/*
+	Маркер конца файла*/
+	UNDEFIND			/*
+	Неизвестное поведение */
 };
-struct TOKENS {
+
+/*
+Токен - это наименьшая единица, которую может понять синтаксический анализатор - 
+если программа похожа на абзац, токены подобны отдельным словам.
+Лексема - оригинальная строка символов составляющее токен
+Пример: 25 + 30
+1. Токен "число" с лексемой "25"
+2. Токен "арифметическая операция" с лексемой "+"
+3. Токен "число" с лексемой "30"                                          */
+struct token_lexeme {
+/*
+Значение токена типа string*/
 	string value;
-	KEYWORDS lexeme;
+/*
+Определение каким является значение взятое из value
+value */
+	TOKENS lexeme;
 };
 uint get_keyword_index();
 void set_keyword_index(uint index);
