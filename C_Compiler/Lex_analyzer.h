@@ -111,16 +111,23 @@ enum TOKENS {
 2. Токен "арифметическая операция" с лексемой "+"
 3. Токен "число" с лексемой "30"                                          */
 struct token_lexeme {
-/*
+	string value;	/*
 Значение токена типа string*/
-	string value;
-/*
+	TOKENS lexeme;	/*
 Определение каким является значение взятое из value
 value */
-	TOKENS lexeme;
 };
+
+
 uint get_keyword_index();
-void set_keyword_index(uint index);
-void set_input_stream(string input_cod);
-bool isKeyword(string word);
-KeywordsLexeme get_next_token();
+void set_keyword_index(uint index);			/*
+Изменить индекс текущего токена
+*/
+void set_input_stream(string input_cod);	/*
+Установить начальные значения*/
+bool isKeyword(string word);				/*
+Является ли входящяя строка токеном*/
+KeywordsLexeme get_next_token();			/*
+Получить следующий токен*/
+TOKENS token_definition();					/*
+Определение каким токеном является лексема*/
