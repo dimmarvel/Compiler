@@ -1,3 +1,7 @@
 ﻿  Lex_analyzer.cpp
-d:\c_compiler\c_compiler\lex_analyzer.cpp(32): warning C4018: <: несоответствие типов со знаком и без знака
+d:\c_compiler\c_compiler\lex_analyzer.cpp(21): warning C4018: <: несоответствие типов со знаком и без знака
+  main.cpp
+  parser.cpp
+d:\c_compiler\c_compiler\parser.cpp(11): warning C4018: <: несоответствие типов со знаком и без знака
+  Создание кода...
   C_Compiler.vcxproj -> D:\C_Compiler\Debug\C_Compiler.exe

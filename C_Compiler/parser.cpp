@@ -3,29 +3,15 @@
 void C_parser(string input_code)
 {
 	set_input_stream(input_code);
-	token_lexeme tk;
-	tk = get_next_token();
-	cout << tk.value << ", " << tk.lexeme << endl;
-	tk = get_next_token();
-	cout << tk.value << ", " << tk.lexeme << endl;
-	tk = get_next_token();
-	cout << tk.value << ", " << tk.lexeme << endl;
-	tk = get_next_token();
-	cout << tk.value << ", " << tk.lexeme << endl;
-	tk = get_next_token();
-	cout << tk.value << ", " << tk.lexeme << endl;
-	tk = get_next_token();
-	cout << tk.value << ", " << tk.lexeme << endl;
-	tk = get_next_token();
-	cout << tk.value << ", " << tk.lexeme << endl;
-	tk = get_next_token();
-	cout << tk.value << ", " << tk.lexeme << endl;
-	tk = get_next_token();
-	cout << tk.value << ", " << tk.lexeme << endl;
-	tk = get_next_token();
-	cout << tk.value << ", " << tk.lexeme << endl;
-	tk = get_next_token();
-	cout << tk.value << ", " << tk.lexeme << endl;
-	tk = get_next_token();
-	cout << tk.value << ", " << tk.lexeme << endl;
+	while (stopped_index < input_code.size()) {
+		token_lexeme tl = get_next_token();
+		token_definition(tl);
+		token_lexeme_vec.push_back(tl);
+	}
+	for (int i = 0; i < token_lexeme_vec.size(); i++)
+	{
+		cout <<"Token ¹"<< i << " | Value = "<< 
+			token_lexeme_vec[i].value << endl << "Lexeme = " << 
+			token_lexeme_vec[i].token_string << endl;
+	}
 }

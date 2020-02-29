@@ -9,7 +9,14 @@ typedef unsigned int uint;
 typedef string KeywordsLexeme;
 enum TOKENS;
 struct token_lexeme;
-
+static vector <token_lexeme> token_lexeme_vec;	/*
+							Хранит набор спаршеных токен-лексем*/
+static uint keyword_index;						/*
+							Текущий индекс парсинга.*/
+static string input_code;						/*
+							Здесь хранится код на языке С.*/
+static uint stopped_index;						/*
+							Хранит значение символа на котором остановился парсер.*/
 
 /*
 Ключевые слова\символы\сочетания символов*/
@@ -68,14 +75,13 @@ const vector <string> keywords_lexeme {
 /*
 Для определения ключевых слов.*/
 enum TOKENS {
-
 	OPEN_BRACE,			/*
 	Открывающая скобка */
 	CLOSE_BRACE,		/*
 	Закрывающая скобка */
 	OPEN_PARENTHESIS,	/*
 	Открывающая круглая скобка */
-	CLOSE_PAREN,		/*
+	CLOSE_PARENTHESIS,	/*
 	Закрывающая круглая скобка*/
 	SEMICOLON,			/*
 	Ключевое слово "точка с запятой" ; */
@@ -132,8 +138,5 @@ bool isKeyword(string word);				/*
 Является ли входящяя строка токеном*/
 token_lexeme get_next_token();				/*
 Получить следующий токен*/
-TOKENS token_definition();					/*
+void token_definition(token_lexeme tl);		/*
 Определение каким токеном является лексема*/
-void TOKEN_definition(token_lexeme tk);
-template<typename T> T TOKEN_definition(token_lexeme tk);
-template<> void TOKEN_definition(token_lexeme tk);

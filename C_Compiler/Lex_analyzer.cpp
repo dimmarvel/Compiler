@@ -2,17 +2,6 @@
 #include "Lex_analyzer.h"
 #define DEBUG
 
-static uint keyword_index;						/*
-							Текущий индекс парсинга.*/
-static string input_code;						/*
-							Здесь хранится код на языке С.*/
-static uint stopped_index;						/*
-							Хранит значение символа на котором остановился парсер.*/
-static vector <token_lexeme> token_lexeme_vec;	/*
-							Хранит набор спаршеных токен-лексем*/
-
-
-
 void set_keyword_index(uint index)
 {
 	keyword_index = index;
@@ -34,32 +23,35 @@ bool isKeyword(string word) {
 			return true;
 	return false;
 }
-token_lexeme get_next_token()				
+token_lexeme get_next_token()
 {
-	token_lexeme temp_token_lexeme = {"undefind", UNDEFIND};
+	token_lexeme temp_token_lexeme = { "undefind", UNDEFIND };
 	KeywordsLexeme token;
 	KeywordsLexeme ch_token;
 	keyword_index = stopped_index;
 
 	while (keyword_index <= input_code.size()) {
 		if (input_code[keyword_index] != '\n' && input_code[keyword_index] != ' ') {
-			
+
 			token += input_code[keyword_index];
 			ch_token = input_code[keyword_index];
-			
+
 			if (isKeyword(ch_token)) {
 				++keyword_index;
 				string temp_token = ch_token + input_code[keyword_index];
-				
+
 				if (isKeyword(temp_token)) {
 					stopped_index = ++keyword_index;
 					temp_token_lexeme.value = temp_token;
 					string temp_IDENTIFIER = token;
-					temp_IDENTIFIER.erase(temp_IDENTIFIER.size()-1, 1);
-					cout << "IDENTIFIER (" + temp_IDENTIFIER + ")"<< endl;
+					temp_IDENTIFIER.erase(temp_IDENTIFIER.size() - 1, 1);
+					if (temp_IDENTIFIER != "") {
+
+						cout << "IDENTIFIER (" + temp_IDENTIFIER + ")" << endl;
+					}
 					return temp_token_lexeme;
 				}
-				
+
 				stopped_index = keyword_index;
 				temp_token_lexeme.value = ch_token;
 				return temp_token_lexeme;
@@ -73,7 +65,6 @@ token_lexeme get_next_token()
 		else {
 #ifdef DEBUG
 			if (token != "" && token != " ") {
-				cout << "UNDEFINE - token(" << ch_token << ")" << endl;
 				cout << "UNDEFINE - token(" << token << ")" << endl;
 			}
 #endif
@@ -83,40 +74,52 @@ token_lexeme get_next_token()
 	}
 	stopped_index = keyword_index;
 	temp_token_lexeme.value = token;
+#ifdef DEBUG
 	cout << "ERROR (" << temp_token_lexeme.value << ")\n";
+#endif
 	return temp_token_lexeme;
 }
-TOKENS token_definition(){
-
-	TOKENS some = UNDEFIND;
-	return some;
-}
-template<> string TOKEN_definition(token_lexeme tk) {
-	switch (tk.lexeme) {
-	case OPEN_BRACE:
-		tk.token_string = "OPEN_BRACE";
-	case CLOSE_BRACE:
-		tk.token_string = "CLOSE_BRACE";
-	case OPEN_PARENTHESIS:
-		tk.token_string = "OPEN_PARENTHESIS";
-	case CLOSE_PAREN:
-		tk.token_string = "CLOSE_PAREN";
-	case SEMICOLON:
-		tk.token_string = "SEMICOLON";
-	case INT_KEYWORD:
-		tk.token_string = "INT_KEYWORD";
-	case RETURN_KEYWORD:
-		tk.token_string = "RETURN_KEYWORD";
-	case IDENTIFIER:
-		tk.token_string = "IDENTIFIER";
-	case INTEGER_LITERAL:
-		tk.token_string = "INTEGER_LITERAL";
-	case STRING_LITERAL:
-		tk.token_string = "STRING_LITERAL";
-	case END_OF_FILE:
-
-	default:
-		cout << "Not found lexeme." << endl;
-		return "UNDEFIND";
+void token_definition(token_lexeme tl) {
+	if (tl.lexeme != UNDEFIND) {
+		if (tl.value == "(") 
+		{
+			tl.lexeme = OPEN_BRACE;
+			tl.token_string = "OPEN_BRACE"; 
+		}
+		else if (tl.value == ")")
+		{
+			tl.lexeme = CLOSE_BRACE;
+			tl.token_string = "CLOSE_BRACE";
+		}
+		else if (tl.value == "{")
+		{
+			tl.lexeme = OPEN_PARENTHESIS;
+			tl.token_string = "OPEN_PARENTHESIS";
+		}
+		else if (tl.value == "}")
+		{
+			tl.lexeme = CLOSE_PARENTHESIS;
+			tl.token_string = "CLOSE_PARENTHESIS";
+		}
+		else if (tl.value == "")
+		{
+			tl.lexeme = SEMICOLON;
+			tl.token_string = "SEMICOLON";
+		}
+		else if (tl.value == "int")
+		{
+			tl.lexeme = INT_KEYWORD;
+			tl.token_string = "INT_KEYWORD";
+		}
+		else if (tl.value == "return")
+		{
+			tl.lexeme = RETURN_KEYWORD;
+			tl.token_string = "RETURN_KEYWORD";
+		}
+		else {
+			tl.lexeme = UNDEFIND;
+		}
 	}
 }
+
+//add push backing
