@@ -30,5 +30,8 @@
     <ClInclude Include="parser.h">
       <Filter>headers</Filter>
     </ClInclude>
+    <ClInclude Include="Limits.h">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@ void C_parser(string input_code)
 		token_definition(tl);
 		token_lexeme_vec.push_back(tl);
 	}
+	cout << input_code << endl;
 	for (int i = 0; i < token_lexeme_vec.size(); i++)
 	{
 		cout <<"Token N("<< i << ")\t|\tValue = "<< 

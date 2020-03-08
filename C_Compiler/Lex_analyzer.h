@@ -139,5 +139,5 @@ bool isKeyword(string word);				/*
 явл€етс€ ли вход€щ€€ строка токеном*/
 token_lexeme get_next_token();				/*
 ѕолучить следующий токен*/
-void token_definition(token_lexeme& tl);		/*
+void token_definition(token_lexeme& tl);	/*
 ќпределение каким токеном €вл€етс€ лексема*/

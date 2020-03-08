@@ -25,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lex_analyzer.h" />
+    <ClInclude Include="Limits.h" />
     <ClInclude Include="parser.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
